@@ -26,6 +26,10 @@ jobs:
     
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+          
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@24cb9080177205b6e8c946b17badbe402adc938f # 3.4.0
         with:
@@ -67,7 +71,7 @@ jobs:
     
     steps:
       - name: Download a Build Artifact
-        uses: actions/download-artifact@v2.1.1
+        uses: actions/download-artifact@v3
         with:
           name: build
 
@@ -85,7 +89,7 @@ jobs:
     
     steps:
       - name: Download a Build Artifact
-        uses: actions/download-artifact@v2.1.1
+        uses: actions/download-artifact@v3
         with:
           name: build
 
